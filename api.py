@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from make_preset import make_preset
 from read_preset import read_preset
+from get_qq_nickname import get_qq_nickname
 import time
 
 app = Flask(__name__)
@@ -29,10 +30,8 @@ def create_preset():
     #read_time = time.strftime("%Y-%m-%d %H:%M:%S")
     status = 'created'
     second_pass['status'] = status
-
     result = second_pass
-
-
+    
     return jsonify(result)
 
 @app.route('/read', methods=['GET'])
@@ -52,8 +51,12 @@ def read_from_exists():
     second_pass['last_read_time'] = read_time
 
     result = second_pass
+    return jsonify(result)
 
-
+@app.route('/get_qq_nickname')
+def get_qq_user_info():
+    qqid = request.args.get('id')
+    result = get_qq_nickname(qqid)    
     return jsonify(result)
 
 if __name__ == '__main__':
