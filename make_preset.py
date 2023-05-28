@@ -14,7 +14,7 @@ def make_preset(preset, nickname, from_arg):
 
     preset_id = count_presets() + 1
     filename = f"{preset_id}.json"
-    status = "success"
+
 
     data = {
         "preset_id": preset_id,
@@ -28,8 +28,8 @@ def make_preset(preset, nickname, from_arg):
     filepath = os.path.join(path, filename)
 
     with open(filepath, "w") as f:
-        json.dump(data, f, ensure_ascii=False)
-        result = json.dumps(data,ensure_ascii=False)
+        json.dump(data, f, )
+        result = json.dumps(data,)
         print( result )
         return data
         
