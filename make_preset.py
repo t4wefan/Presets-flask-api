@@ -1,17 +1,10 @@
 import json
 import os
 import time
+from maxid import count_presets
 
 
 def make_preset(preset, nickname, from_arg):
-    def count_presets():
-        path = "presets"
-        if not os.path.exists(path):
-            return 0
-
-        files = os.listdir(path)
-        return len(files)
-
     path = "presets"
     if not os.path.exists(path):
         os.makedirs(path)
@@ -38,5 +31,5 @@ def make_preset(preset, nickname, from_arg):
         json.dump(data, f, ensure_ascii=False)
         result = json.dumps(data,ensure_ascii=False)
         print( result )
-        return result
+        return data
         
